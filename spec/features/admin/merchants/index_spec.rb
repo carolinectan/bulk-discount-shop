@@ -89,7 +89,7 @@ describe 'Admin Merchant Index' do
     expect(current_path).to eq(new_admin_merchant_path)
     fill_in :name, with: 'Dingley Doo'
 
-    click_button 
+    click_button "Save"
 
     expect(current_path).to eq(admin_merchants_path)
     expect(page).to have_content('Dingley Doo')
@@ -97,7 +97,7 @@ describe 'Admin Merchant Index' do
 
   it 'should display the best day for each top 5 merchant' do
     within("#top-#{@m1.id}") do
-      expect(page).to have_content("Top Selling Date for #{@m1.name} was on#{@m1.best_day.strftime("%_m/%d/%Y")}")
+      expect(page).to have_content("Top Selling Date for #{@m1.name} was on #{@m1.best_day.to_date}")
     end
   end
 end

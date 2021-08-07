@@ -23,7 +23,7 @@ describe 'Admin Merchant Show' do
 
     fill_in 'merchant[name]', with: 'Dang Boiii'
 
-    click_button
+    click_button "Update Merchant"
 
     expect(current_path).to eq(admin_merchant_path(@m1))
     expect(page).to have_content('Dang Boiii')
