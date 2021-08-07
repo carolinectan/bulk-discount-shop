@@ -58,6 +58,7 @@ describe 'Admin Merchant Index' do
   it 'should have rerouting links on all merchants names to their admin show page' do
     within("#toppy-#{@m1.id}") do
       click_link "#{@m1.name}"
+
       expect(current_path).to eq(admin_merchant_path(@m1))
     end
       expect(page).to have_content(@m1.name)
@@ -87,7 +88,8 @@ describe 'Admin Merchant Index' do
 
     expect(current_path).to eq(new_admin_merchant_path)
     fill_in :name, with: 'Dingley Doo'
-    click_button
+
+    click_button 
 
     expect(current_path).to eq(admin_merchants_path)
     expect(page).to have_content('Dingley Doo')

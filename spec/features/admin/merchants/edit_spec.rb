@@ -8,6 +8,7 @@ describe 'Admin Merchant Show' do
 
   it 'should have a form that redirects back to admin merchant show with a flash message' do
     fill_in 'merchant[name]', with: 'Dang Boiii'
+    
     click_button
 
     expect(current_path).to eq(admin_merchant_path(@m1))
