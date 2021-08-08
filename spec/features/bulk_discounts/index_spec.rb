@@ -90,7 +90,7 @@ RSpec.describe "merchant's bulk discounts index page" do
     # end
 
     it "has a section with a header of 'Upcoming Holidays'" do
-      expect(page).to have_content('Upcoming Holidays')
+      expect(page).to have_content('Next 3 Upcoming Holidays:')
     end
 
     xit 'exists' do
@@ -131,4 +131,17 @@ RSpec.describe "merchant's bulk discounts index page" do
       expect(page).to have_content('2021-11-11')
     end
   end
+
+  it 'has a link to create a new bulk discount' do
+    expect(page).to have_link('Create a New Bulk Discount')
+
+    click_link('Create a New Bulk Discount')
+
+    expect(current_path).to eq(new_merchant_bulk_discount_path(@merchant1))
+  end
+
+# Then I am taken to a new page where I see a form to add a new bulk discount
+# When I fill in the form with valid data
+# Then I am redirected back to the bulk discount index
+# And I see my new bulk discount listed
 end
