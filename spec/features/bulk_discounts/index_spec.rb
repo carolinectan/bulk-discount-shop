@@ -19,7 +19,6 @@ RSpec.describe "merchant's bulk discounts index page" do
     expect(page).to have_content("#{@merchant1.name}'s Bulk Discounts")
 
     within("#bd-#{@bulk_discount1.id}") do
-    save_and_open_page
       expect(page).to have_content("Bulk Discount ##{@bulk_discount1.id}")
       expect(page).to have_content("Quantity Threshold: #{@bulk_discount1.quantity}")
       expect(page).to have_content("Percentage Discount: #{@bulk_discount1.percentage}")
@@ -46,6 +45,13 @@ RSpec.describe "merchant's bulk discounts index page" do
     click_link(@bulk_discount1.id)
 
     expect(current_path).to eq(merchant_bulk_discount_path(@merchant1.id, @bulk_discount1.id))
-  # And each bulk discount listed includes a link to its show page
+  end
+
+  it "has a section with a header of 'Upcoming Holidays'" do
+    expect(page).to have_content('Upcoming Holidays')
+
+# In this section the name and date of the next 3 upcoming US holidays are listed.
+#
+# Use the Next Public Holidays Endpoint in the [Nager.Date API](https://date.nager.at/swagger/index.html)
   end
 end
