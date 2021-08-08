@@ -3,11 +3,9 @@ require 'rails_helper'
 RSpec.describe '' do
   before :each do
     @merchant1 = Merchant.create!(name: 'Ornithology with Sami')
-    # @merchant2 = Merchant.create!(name: 'Beats with Elliot')
 
     @bulk_discount1 = @merchant1.bulk_discounts.create!(quantity: 4, percentage: 30)
     @bulk_discount2 = @merchant1.bulk_discounts.create!(quantity: 2, percentage: 50)
-    # @bulk_discount3 = @merchant2.bulk_discounts.create!(quantity: 1, percentage: 70)
 
     visit merchant_bulk_discounts_path(@merchant1)
   end
