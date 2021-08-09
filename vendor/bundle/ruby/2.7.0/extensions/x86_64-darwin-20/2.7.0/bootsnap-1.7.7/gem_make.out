@@ -1,0 +1,15 @@
+current directory: /Users/ctan/turing/mod2/bulk-discount-shop/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.7/ext/bootsnap
+/Users/ctan/.rbenv/versions/2.7.2/bin/ruby -I /Users/ctan/.rbenv/versions/2.7.2/lib/ruby/2.7.0 -r ./siteconf20210809-42265-wks9si.rb extconf.rb
+creating Makefile
+
+current directory: /Users/ctan/turing/mod2/bulk-discount-shop/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.7/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/ctan/turing/mod2/bulk-discount-shop/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.7/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/ctan/turing/mod2/bulk-discount-shop/vendor/bundle/ruby/2.7.0/gems/bootsnap-1.7.7/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20210809-42265-xsvr3s/bootsnap
