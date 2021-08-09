@@ -31,6 +31,7 @@ describe 'Admin Dashboard Index Page' do
     @ii_2 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item_2.id, quantity: 1, unit_price: 8, status: 0)
     @ii_3 = InvoiceItem.create!(invoice_id: @i2.id, item_id: @item_3.id, quantity: 1, unit_price: 5, status: 2)
     @ii_4 = InvoiceItem.create!(invoice_id: @i3.id, item_id: @item_3.id, quantity: 1, unit_price: 5, status: 1)
+
     visit admin_dashboard_index_path
   end
 
@@ -81,12 +82,12 @@ describe 'Admin Dashboard Index Page' do
   it 'should display a list of Invoice IDs and Items that have not been shipped' do
     expect(page).to have_content(@i1.id)
     expect(page).to have_content(@i3.id)
-
     expect(page).to_not have_content(@i2.id)
   end
 
   it 'should link to the invoice admin show page via id' do
     expect(page).to have_link("Invoice # #{@i1.id}")
+
     click_link("Invoice # #{@i1.id}")
 
     expect(current_path).to eq(admin_invoice_path(@i1))
