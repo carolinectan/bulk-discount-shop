@@ -5,7 +5,6 @@ RSpec.describe '' do
     @merchant1 = Merchant.create!(name: 'Hiking with Amanda')
 
     @bulk_discount1 = @merchant1.bulk_discounts.create!(quantity: 4, percentage: 30)
-    @bulk_discount2 = @merchant1.bulk_discounts.create!(quantity: 2, percentage: 50)
   end
 
   it 'can update a bulk discount' do
@@ -18,14 +17,42 @@ RSpec.describe '' do
     within "#bd-#{@bulk_discount1.id}" do
       click_link("Edit")
     end
-save_and_open_page
+
+    expect(page).to have_field('Quantity', with: @bulk_discount1.quantity)
+    expect(page).to have_field('Percentage', with: @bulk_discount1.percentage)
+
+    fill_in('Quantity', with: 6)
+    fill_in('Percentage', with: 15)
+
+    click_on('Update Bulk discount')
+
+    expect(current_path).to eq(merchant_bulk_discount_path(@merchant1, @bulk_discount1))
+    expect(page).to have_content(6)
+    expect(page).to have_content(15)
+    expect(page).to have_content("Bulk Discount ##{@bulk_discount1.id} was successfully updated!")
+  end
+
+  it 'can update just one attribute' do
+    visit merchant_bulk_discount_path(@merchant1.id, @bulk_discount1.id)
+
+    expect(page).to have_content(@bulk_discount1.id)
     expect(page).to have_content(@bulk_discount1.quantity)
     expect(page).to have_content(@bulk_discount1.percentage)
 
-    # Then I am taken to a new page with a form to edit the discount
-    # And I see that the discounts current attributes are pre-poluated in the form
-    # When I change any/all of the information and click submit
-    # Then I am redirected to the bulk discount's show page
-    # And I see that the discount's attributes have been updated
+    within "#bd-#{@bulk_discount1.id}" do
+      click_link("Edit")
+    end
+
+    expect(page).to have_field('Quantity', with: @bulk_discount1.quantity)
+    expect(page).to have_field('Percentage', with: @bulk_discount1.percentage)
+
+    fill_in('Quantity', with: 7)
+
+    click_on('Update Bulk discount')
+
+    expect(current_path).to eq(merchant_bulk_discount_path(@merchant1, @bulk_discount1))
+    expect(page).to have_content(7)
+    expect(page).to have_content(30)
+    expect(page).to have_content("Bulk Discount ##{@bulk_discount1.id} was successfully updated!")
   end
 end
