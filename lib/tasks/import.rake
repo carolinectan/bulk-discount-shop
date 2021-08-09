@@ -21,6 +21,13 @@ task :import, [:items] => :environment do
   ActiveRecord::Base.connection.reset_pk_sequence!('items')
 end
 
+task :import, [:bulk_discounts] => :environment do
+  CSV.foreach('db/data/bulk_discounts.csv', headers: true) do |row|
+    BulkDiscount.create!(row.to_hash)
+  end
+  ActiveRecord::Base.connection.reset_pk_sequence!('bulk_discounts')
+end
+
 task :import, [:invoices] => :environment do
   CSV.foreach('db/data/invoices.csv', headers: true) do |row|
     if row.to_hash['status'] == 'cancelled'
