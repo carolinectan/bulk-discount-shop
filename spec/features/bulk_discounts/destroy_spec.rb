@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '' do
+RSpec.describe "deleting a merchant's bulk discount" do
   before :each do
     @merchant1 = Merchant.create!(name: 'Ornithology with Sami')
 
