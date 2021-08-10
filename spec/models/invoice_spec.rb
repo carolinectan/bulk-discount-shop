@@ -5,7 +5,7 @@ RSpec.describe Invoice, type: :model do
     it { should validate_presence_of(:status) }
     it { should validate_presence_of(:customer_id) }
   end
-  
+
   describe "relationships" do
     it { should belong_to(:customer) }
     it { should have_many(:items).through(:invoice_items) }
@@ -24,7 +24,7 @@ RSpec.describe Invoice, type: :model do
       @ii_11 = InvoiceItem.create!(invoice_id: @invoice_1.id, item_id: @item_8.id, quantity: 1, unit_price: 10, status: 1)
     end
 
-    it "total_revenue" do
+    it "#total_revenue" do
       expect(@invoice_1.total_revenue).to eq(100)
     end
   end
