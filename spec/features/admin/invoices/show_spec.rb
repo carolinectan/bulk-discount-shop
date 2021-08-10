@@ -53,12 +53,6 @@ describe 'Admin Invoices Show Page' do
     expect(page).to have_no_content(@ii3.status)
   end
 
-  it 'displays the total revenue (NOT including discounts) for an admin from a specific invoice' do
-    expect(page).to have_content("Total Revenue: $#{@invoice1.total_revenue / 100}")
-
-    expect(page).to have_no_content(@invoice2.total_revenue)
-  end
-
   it 'should have status as a select field that updates the invoices status' do
     within("#status-update-#{@invoice1.id}") do
       select('cancelled', :from => 'invoice[status]')
@@ -69,9 +63,15 @@ describe 'Admin Invoices Show Page' do
       expect(@invoice1.status).to eq('completed')
     end
   end
+  
+  it 'displays the total revenue (NOT including discounts) for an admin from a specific invoice' do
+    expect(page).to have_content("Total Revenue: $#{@invoice1.total_revenue / 100}")
+
+    expect(page).to have_no_content(@invoice2.total_revenue)
+  end
 
   it 'displays the total discounted revenue for an admin from a specific invoice which INCLUDES bulk discounts in the calculation' do
-
-    # And I see the total discounted revenue from this invoice which includes bulk discounts in the calculation
+    save_and_open_page
+    expect(page).to have_content("Total Discounted Revenue: $#{@invoice1.total_discounted_revenue / 100}")
   end
 end
