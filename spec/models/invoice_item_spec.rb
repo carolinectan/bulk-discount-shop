@@ -8,8 +8,31 @@ RSpec.describe InvoiceItem, type: :model do
     it { should validate_presence_of(:unit_price) }
     it { should validate_presence_of(:status) }
   end
+
   describe "relationships" do
     it { should belong_to(:invoice) }
     it { should belong_to(:item) }
+  end
+
+  ##### Examples #####
+  describe 'class methods' do
+    describe ".discount_applies?" do
+      it "(EXAMPLE 1) returns false if the invoice item meet the bulk discount's quantity threshold" do
+        merchant1 = Merchant.create!(name: 'Potato Stand')
+        bulk_discount1 = merchant1.bulk_discounts.create!(percentage: 0.20, quantity: 10)
+
+        item1 = merchant1.items.create!(name: 'Purple Potato', description: 'Very purple', unit_price: 1405)
+        item2 = merchant1.items.create!(name: 'Yukon Gold Potato', description: 'Large and gold', unit_price: 2800)
+
+        customer1 = Customer.create!(first_name: 'Polly', last_name: 'Pocket')
+        invoice1 = customer1.invoices.create!(status: 2)
+
+        invoiceitem1 = InvoiceItem.create!(invoice_id: invoice1.id, item_id: item1.id, quantity: 5, unit_price: 2005, status: 2)
+        invoiceitem2 = InvoiceItem.create!(invoice_id: invoice1.id, item_id: item2.id, quantity: 5, unit_price: 3000, status: 2)
+
+        expect(invoiceitem1.discount_applies).to eq(nil)
+        expect(invoiceitem2.discount_applies).to eq(nil)
+      end
+    end
   end
 end
