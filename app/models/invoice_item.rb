@@ -15,12 +15,12 @@ class InvoiceItem < ApplicationRecord
     Invoice.order(created_at: :asc).find(invoice_ids)
   end
 
-  def discount_applies
+  def discount_applied
     self.item
         .merchant
-        .bulk_discounts
+        .bulk_discounts #=> [bulk_discount]
         .where("#{self.quantity} >= quantity")
-        .order(quantity: :desc)
+        .order(quantity: :desc) #=> if nothing matches, returns []
         .first
   end
 end
