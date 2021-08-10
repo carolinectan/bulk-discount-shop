@@ -15,6 +15,7 @@ class InvoiceItem < ApplicationRecord
     Invoice.order(created_at: :asc).find(invoice_ids)
   end
 
+  #determines which discount is applied to an invoice item
   def discount_applied
     self.item
         .merchant

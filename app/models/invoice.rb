@@ -20,7 +20,7 @@ class Invoice < ApplicationRecord
     .joins(item: [merchant: :bulk_discounts])
     .select('sum(bulk_discount.percentage * unit_price * quantity) as discount')
     .group(:id)
-    binding.pry
+    # binding.pry
 
 
     # DRAFT 1
