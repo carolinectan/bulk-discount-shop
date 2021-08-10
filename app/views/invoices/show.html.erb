@@ -38,17 +38,22 @@
     </thead>
 
     <tbody>
-      <% @invoice.invoice_items.each do |i| %>
-        <section id="the-status-<%= i.id %>">
+      <% @invoice.invoice_items.each do |ii| %>
+        <section id="the-status-<%= ii.id %>">
           <tr class="tr">
-            <td style="text-align:center"><%= i.item.name %></td>
-            <td style="text-align:center"><%= i.quantity %></td>
-            <td style="text-align:center">$<%= i.unit_price / 100.00 %></td>
+            <td style="text-align:center"><%= ii.item.name %></td>
+            <td style="text-align:center"><%= ii.quantity %></td>
+            <td style="text-align:center">$<%= ii.unit_price / 100.00 %></td>
             <td style="text-align:center"><%= form_with model: @invoice, url: merchant_invoice_path(@merchant, @invoice), method: :patch, local: true do |f| %>
                                             <%= f.select :status, Invoice.statuses.keys, selected: "#{@invoice.status}" %>
                                             <%= f.submit 'Update Invoice' %>
                                           <% end %></td><br/>
-          </tr>
+        <div id="ii-<%= ii.id %>">
+          <% if ii.discount_applied != nil %>
+              <td style="text-align:center"><%= link_to "View Discount Applied", merchant_bulk_discount_path(@merchant.id, ii.discount_applied.id) %></td>
+          <% end %>
+        </div>
+        </tr>
         </section>
       <% end %>
     </tbody>
