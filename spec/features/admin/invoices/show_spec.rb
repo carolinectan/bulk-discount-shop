@@ -63,7 +63,7 @@ describe 'Admin Invoices Show Page' do
       expect(@invoice1.status).to eq('completed')
     end
   end
-  
+
   it 'displays the total revenue (NOT including discounts) for an admin from a specific invoice' do
     expect(page).to have_content("Total Revenue: $#{@invoice1.total_revenue / 100}")
 
@@ -71,7 +71,6 @@ describe 'Admin Invoices Show Page' do
   end
 
   it 'displays the total discounted revenue for an admin from a specific invoice which INCLUDES bulk discounts in the calculation' do
-    save_and_open_page
     expect(page).to have_content("Total Discounted Revenue: $#{@invoice1.total_discounted_revenue / 100}")
   end
 end
