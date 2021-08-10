@@ -104,28 +104,25 @@ RSpec.describe 'invoices show' do
 
   it 'displays the total revenue (NOT including discounts) for a merchant from a specific invoice' do
     visit merchant_invoice_path(@merchant1.id, @invoice_1.id)
-save_and_open_page
 
     expect(page).to have_content("$182")
   end
 
-  xit 'displays the total discounted revenue for a merchant from a specific invoice which INCLUDES bulk discounts in the calculation' do
+  it 'displays the total discounted revenue for a merchant from a specific invoice which INCLUDES bulk discounts in the calculation' do
     visit merchant_invoice_path(@merchant1.id, @invoice_1.id)
-    # @merchant1 = Merchant.create!(name: 'Hair Care')
-    # @invoice_1 = Invoice.create!(customer_id: @customer_1.id, status: 2, created_at: "2012-03-27 14:54:09")
+    # @bulk_discount1 = @merchant1.bulk_discounts.create!(percentage: 20, quantity: 9)
+    # @bulk_discount2 = @merchant1.bulk_discounts.create!(percentage: 30, quantity: 15)
 
-    # invoice_items.sum("unit_price * quantity")
+    # @ii_1 => 9 * 1000 * (.2)  = 1800
+    # @ii_11 => 12 * 600 * (.2) = 1440
+    # @ii_12 => 10 * 200        = 2000
 
-    # @ii_1 (item_id: @item_1.id, quantity: 9, unit_price: 10, status: 2) => 90
-    # @ii_11 (item_id: @item_8.id, quantity: 12, unit_price: 6, status: 1 => 72
+    # discount = 5240 in cents
+    # 18200 - 5240 = 12960 in cents
 
-    # @item_1 = Item.create!(name: "Shampoo", description: "This washes your hair", unit_price: 10, merchant_id: @merchant1.id, status: 1)
-    # @item_8 = Item.create!(name: "Butterfly Clip", description: "This holds up your hair but in a clip", unit_price: 5, merchant_id: @merchant1.id)
+    # discount => 129.6?
 
-    bulk_discount1 = @merchant1.bulk_discounts.create!(quantity: 4, percentage: 30)
-    bulk_discount2 = @merchant1.bulk_discounts.create!(quantity: 2, percentage: 50)
-
-    expect(page).to have_content()
+    expect(page).to have_content('$129.60')
   end
 
   it 'displays a link next to each invoice item to the show page for the bulk discount that was applied (if any)' do
