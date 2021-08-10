@@ -99,26 +99,32 @@ RSpec.describe 'invoices show' do
      end
   end
 
-#if it doesn't have a disocunt applied, do this
+
+
 ##### Merchant Invoice Show Page: Total Revenue and Discounted Revenue #####
 
   it 'displays the total revenue (NOT including discounts) for a merchant from a specific invoice' do
     visit merchant_invoice_path(@merchant1.id, @invoice_1.id)
 
     expect(page).to have_content("$162")
+  end
+
+  it 'displays the total discounted revenue for a merchant from a specific invoice which INCLUDES bulk discounts in the calculation' do
+    visit merchant_invoice_path(@merchant1.id, @invoice_1.id)
+    # @merchant1 = Merchant.create!(name: 'Hair Care')
+    # @invoice_1 = Invoice.create!(customer_id: @customer_1.id, status: 2, created_at: "2012-03-27 14:54:09")
 
     # invoice_items.sum("unit_price * quantity")
 
-    # @merchant1 + @invoice1 => @customer1
-
-    # => @ii_1 (item_id: @item_1.id, quantity: 9, unit_price: 10, status: 2) => 90
-    # => @ii_11 (item_id: @item_8.id, quantity: 12, unit_price: 6, status: 1 => 72
+    # @ii_1 (item_id: @item_1.id, quantity: 9, unit_price: 10, status: 2) => 90
+    # @ii_11 (item_id: @item_8.id, quantity: 12, unit_price: 6, status: 1 => 72
 
     # @item_1 = Item.create!(name: "Shampoo", description: "This washes your hair", unit_price: 10, merchant_id: @merchant1.id, status: 1)
     # @item_8 = Item.create!(name: "Butterfly Clip", description: "This holds up your hair but in a clip", unit_price: 5, merchant_id: @merchant1.id)
 
-    # => total revenue = $162
+    bulk_discount1 = @merchant1.bulk_discounts.create!(quantity: 4, percentage: 30)
+    bulk_discount2 = @merchant1.bulk_discounts.create!(quantity: 2, percentage: 50)
 
-    # And I see the total discounted revenue for my merchant from this invoice which includes bulk discounts in the calculation
+    expect(page).to have_content()
   end
 end
