@@ -25,14 +25,14 @@ class Invoice < ApplicationRecord
   def discount
     self.invoice_items.map do |ii|
       if ii.discount_applied != nil # if ii qualifies for a discount
-        ii.quantity * ii.unit_price * (ii.discount_applied.percentage/100.0)
+        ii.quantity * ii.unit_price * (ii.discount_applied.percentage / 100.0)
       else # if no discount applies to ii
         ii.quantity * ii.unit_price
       end
     end.sum
   end
 
-    # DRAFT 2 / WIP 
+    # DRAFT 2 / WIP
     # invoice_items
     # .joins(item: [merchant: :bulk_discounts])
     # .select('invoice_items.*, bulk_discounts.* sum(invoice_items.unit_price * invoice_items.quantity * bulk_discount.percentage * ) as discount_calc')
