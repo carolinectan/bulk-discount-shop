@@ -20,7 +20,7 @@ class InvoiceItem < ApplicationRecord
         .merchant
         .bulk_discounts #=> [bulk_discount]
         .where("#{self.quantity} >= quantity")
-        .order(quantity: :desc) #=> if nothing matches, returns []
+        .order(percentage: :desc) #=> if nothing matches, returns []
         .first
   end
 end
