@@ -112,15 +112,12 @@ RSpec.describe 'invoices show' do
     visit merchant_invoice_path(@merchant1.id, @invoice1.id)
     # @bulk_discount1 = @merchant1.bulk_discounts.create!(percentage: 20, quantity: 9)
     # @bulk_discount2 = @merchant1.bulk_discounts.create!(percentage: 30, quantity: 15)
-
     # @ii_1 => 9 * 1000 * (.2)  = 1800
     # @ii_11 => 12 * 600 * (.2) = 1440
     # @ii_12 => 10 * 200        = 2000
-
     # discount = 5240 in cents
     # 18200 - 5240 = 12960 in cents
-
-    # discount => 129.6?
+    # discount => 129.6
 
     expect(page).to have_content('$129.60')
   end

@@ -30,12 +30,13 @@ class Invoice < ApplicationRecord
         ii.quantity * ii.unit_price
       end
     end.sum
+  end
 
-    # DRAFT 2
+    # DRAFT 2 / WIP 
     # invoice_items
     # .joins(item: [merchant: :bulk_discounts])
-    # .select('sum(bulk_discount.percentage * unit_price * quantity) as discount')
-    # .group(:id)
+    # .select('invoice_items.*, bulk_discounts.* sum(invoice_items.unit_price * invoice_items.quantity * bulk_discount.percentage * ) as discount_calc')
+    # .where('invoice_items.quantity >= bulk_discounts.quantity')
 
     # DRAFT 1
     # invoice_items
@@ -46,5 +47,4 @@ class Invoice < ApplicationRecord
     # binding.pry
     # wip.first.percentage
     # wip.first.quantity
-  end
 end

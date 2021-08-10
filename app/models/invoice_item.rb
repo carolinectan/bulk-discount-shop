@@ -22,6 +22,6 @@ class InvoiceItem < ApplicationRecord
         .bulk_discounts #=> [bulk_discount]
         .where("#{self.quantity} >= quantity")
         .order(percentage: :desc) #=> if nothing matches, returns []
-        .first
+        .first # returns obj instead of an obj in an array
   end
 end
