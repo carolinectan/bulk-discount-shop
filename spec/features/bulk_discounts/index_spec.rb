@@ -50,7 +50,7 @@ RSpec.describe "merchant's bulk discounts index page" do
 
   describe 'holidays API' do
     it "has a section with a header of 'Upcoming Holidays'" do
-      expect(page).to have_content('Next 3 Upcoming Holidays:')
+      expect(page).to have_content('Next 3 Upcoming Holidays')
     end
 
     it 'displays the name and date of the next 3 upcoming US holidays' do
