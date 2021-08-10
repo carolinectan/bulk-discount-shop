@@ -20,7 +20,7 @@
   <br>
 
   <p> Created on: <%= @invoice.created_at.strftime("%A, %B %-d, %Y") %></p>
-  <p>Total Revenue: $<%= (@invoice.total_revenue / 100.00) %></p>
+  <p>Total Revenue: <%= number_to_currency(@invoice.total_revenue / 100) %></p>
 
   <h4>Customer:</h4>
     <%= @customer.first_name %> <%= @customer.last_name %><br>
@@ -43,7 +43,7 @@
           <tr class="tr">
             <td style="text-align:center"><%= ii.item.name %></td>
             <td style="text-align:center"><%= ii.quantity %></td>
-            <td style="text-align:center">$<%= ii.unit_price / 100.00 %></td>
+            <td style="text-align:center"><%= number_to_currency(ii.unit_price / 100) %></td>
             <td style="text-align:center"><%= form_with model: @invoice, url: merchant_invoice_path(@merchant, @invoice), method: :patch, local: true do |f| %>
                                             <%= f.select :status, Invoice.statuses.keys, selected: "#{@invoice.status}" %>
                                             <%= f.submit 'Update Invoice' %>
