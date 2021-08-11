@@ -52,7 +52,6 @@ RSpec.describe '' do
 
     expect(current_path).to eq(merchant_bulk_discount_path(@merchant1, @bulk_discount1))
     expect(page).to have_content(7)
-    expect(page).to have_no_content(4)
     expect(page).to have_content(30)
     expect(page).to have_content("Bulk Discount ##{@bulk_discount1.id} was successfully updated!")
   end
