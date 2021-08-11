@@ -80,7 +80,10 @@ This project is an extension of the Little Esty Shop group project. You will add
 <!-- ROADMAP -->
 ## Roadmap
 
-1.
+1. [Database Setup](./doc/bulk_discounts_examples.md)
+1. [User Stories](./doc/bulk_discounts_user_stories.md)
+1. [Extensions](./doc/bulk_discounts_extensions.md)
+1. [Evaluation](./doc/bulk_discounts_evaluation.md)
 
 
 <!-- CONTRIBUTING -->
