@@ -7,22 +7,16 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#learning-goals">Learning Goals</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#database-schema">Database Schema</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
 
@@ -53,12 +47,6 @@ This project is an extension of the Little Esty Shop group project. You will add
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-
-### Installation
-
 1. Fork this repo
 2. Clone the repo
    ```
@@ -80,8 +68,7 @@ To get a local copy up and running follow these simple example steps.
 <!-- USAGE EXAMPLES -->
 ## Database Schema
 
-[![schema][product-screenshot]](app/assets/images/bulk_discount_schema.png)
-
+![database-schema](./app/assets/images/bulk_discount_schema.png)
 
 <!-- ROADMAP -->
 ## Roadmap
