@@ -39,10 +39,17 @@ This project is an extension of the Little Esty Shop group project. You will add
 
 ### Built With
 
-* [Bootstrap](https://getbootstrap.com)
-* [Faraday](https://lostisland.github.io/faraday/)
-* [Node](https://nodejs.org/en/download/package-manager/#macos)
-
+| Development                                                   | Testing       | Gems                                                              |
+|   :----:                                                      |    :----:     |    :----:                                                         |
+| Ruby 2.7.2                                                    | RSpec         | [Capybara](https://github.com/teamcapybara/capybara)              |
+| Rails 5.2.5                                                   |               | [Factorybot](https://github.com/thoughtbot/factory_bot)           |
+| [Bootstrap](https://getbootstrap.com)                         |               | [Faker](https://github.com/faker-ruby/faker)                      |
+| HTML5                                                         |               | [Faraday](https://lostisland.github.io/faraday/)                  |
+| [Node](https://nodejs.org/en/download/package-manager/#macos) |               | [Launchy](https://github.com/copiousfreetime/launchy)             |
+| [Atom](https://atom.io/)                                      |               | [Orderly](https://github.com/jmondo/orderly)                      |
+| [GitHub](https://github.com/)                                 |               | Pry                                                               |
+|                                                               |               | [ShouldaMatchers](https://github.com/thoughtbot/shoulda-matchers) |
+|                                                               |               | [SimpleCov](https://github.com/simplecov-ruby/simplecov)          |
 
 
 ## Getting Started
